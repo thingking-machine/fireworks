@@ -8,6 +8,5 @@ title: Thingking Machine
   A machine is a <b>thing</b>. Things can not <b>think</b>. ...but some of them can <b>thingk</b>!
 </pre>
 
-<br>
 
 [Thingking-Machine using fireworks.ai](./pages/page_1)

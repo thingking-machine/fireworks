@@ -15,16 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Capture HTML from original static <p class="dialogue"> elements and then hide them.
     // These elements are not moved, respecting their original structure for other potential uses,
     // but are hidden to cede display control to the dynamic dialogueWrapper.
-    const originalStaticDialogueElements = Array.from(contentContainer.querySelectorAll('p.dialogue'));
-    let initialHtmlFromStatic = '';
-    originalStaticDialogueElements.forEach(p => {
-        initialHtmlFromStatic += p.outerHTML; // Capture their HTML content
+    const originalDialogue = Array.from(contentContainer.querySelectorAll('p.dialogue'));
+    let initialHtml = '';
+    originalDialogue.forEach(p => {
+        initialHtml += p.outerHTML; // Capture their HTML content
         p.style.display = 'none';          // Hide the original static element
     });
 
     // 1. Create a wrapper for the dialogue content (will be populated by updateDisplayState)
     const dialogueWrapper = document.createElement('div');
-    dialogueWrapper.id = 'dialogue-content-wrapper';
+    dialogueWrapper.id = 'dialogue-wrapper';
 
     // 2. Create the textarea for editing
     const textarea = document.createElement('textarea');
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     textarea.style.width = '100%';
     textarea.style.minHeight = '830px';
     textarea.style.display = 'none'; // Initially hidden
-    textarea.style.setProperty('border', '1px solid lightgrey', 'important');
+    textarea.style.setProperty('border', '1px solid lightgrey');
     textarea.style.padding = '10px';
 
     // 3. Create container and button for file picking
@@ -65,9 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // If 'platoText' is null, try to populate from static HTML. Otherwise, use existing.
     let platoTextForInit = localStorage.getItem('platoText');
     if (platoTextForInit === null) {
-        if (initialHtmlFromStatic.trim() !== '') {
+        if (initialHtml.trim() !== '') {
             try {
-                platoTextForInit = platoHtmlToPlatoText(initialHtmlFromStatic);
+                platoTextForInit = platoHtmlToPlatoText(initialHtml);
             } catch (e) {
                 console.error("Error converting initial static HTML to Plato text:", e);
                 platoTextForInit = ''; // Fallback to empty string on error
@@ -77,8 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         localStorage.setItem('platoText', platoTextForInit);
     }
-    // Now, localStorage.getItem('platoText') is guaranteed to be a string (possibly empty).
-
     // 6. Function to update display based on localStorage content
     function updateDisplayState() {
         const currentPlatoText = localStorage.getItem('platoText');
@@ -104,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // Initial display update
     updateDisplayState();
+
     // 7. Event listener for "Choose File" button
     chooseFileButton.addEventListener('click', async () => {
         try {
@@ -135,21 +134,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
     // 8. Event listener to switch to edit mode when dialogue content is clicked
     dialogueWrapper.addEventListener('click', () => {
         try {
-            // Read directly from localStorage to ensure consistency,
-            // as dialogueWrapper.innerHTML might have formatting quirks.
-            const plainText = localStorage.getItem('platoText') || '';
-            // Or, if conversion from current HTML is preferred:
-            // const plainText = platoHtmlToPlatoText(dialogueWrapper.innerHTML);
-            textarea.value = plainText;
+            // Convert the current HTML to plain text.
+            textarea.value = platoHtmlToPlatoText(dialogueWrapper.innerHTML);
             dialogueWrapper.style.display = 'none';
             textarea.style.display = 'block';
             filePickerContainer.style.display = 'none';
             textarea.focus();
         } catch (e) {
-            console.error("Error converting HTML to Plato text for editing:", e);
+            console.error("Error converting HTML to text for editing:", e);
             alert("Could not switch to edit mode due to a content error.");
         }
     });
@@ -168,6 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     textarea.addEventListener('input', () => {
         localStorage.setItem('platoText', textarea.value);
     });
+
     // 11. Event listener for saving to file (Ctrl+Shift+Enter) - Always "Save As"
     document.addEventListener('keydown', async (event) => {
         if (event.ctrlKey && event.shiftKey && event.key === 'Enter') {
@@ -216,14 +213,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.altKey && event.shiftKey) {
             event.preventDefault();
 
-            const currentDialogueWrapper = document.getElementById('dialogue-content-wrapper');
-            if (!currentDialogueWrapper) {
-                console.error('Alt+Shift: dialogue-content-wrapper not found.');
+            // const dialogueWrapper = document.getElementById('dialogue-wrapper');
+            if (!dialogueWrapper) {
+                console.error('Alt+Shift: dialogue-wrapper not found.');
                 alert('Error: Could not find the dialogue content to send.');
                 return;
             }
 
-            const htmlContent = currentDialogueWrapper.innerHTML;
+            const htmlContent = dialogueWrapper.innerHTML;
             if (!htmlContent || htmlContent.trim() === '') {
                 console.log('Alt+Shift: Dialogue content is empty. Nothing to send.');
                 alert('Dialogue is empty. Please add some content first.');
