@@ -249,8 +249,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         console.log('Worker task successful. LLM Response:', e.data.data);
 
                         try {
-                            const llmResponseData = e.data.data.choices[0].message;
-                            if (!llmResponseData || !llmResponseData.choices || llmResponseData.choices.length === 0) {
+                            const llmResponseData = e.data.data;
+                            if (!llmResponseData || !llmResponseData || llmResponseData.content.length === 0) {
                                 console.error('LLM response is missing a message content.');
                                 alert('Received an empty or invalid response from the LLM.');
                                 return;
