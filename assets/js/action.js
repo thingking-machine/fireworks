@@ -249,22 +249,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         console.log('Worker task successful. LLM Response:', e.data.data);
 
                         try {
-                            const llmResponseData = e.data.data;
-                            if (!llmResponseData || !llmResponseData.content || llmResponseData.content.text.length === 0) {
+                            const llmResponseData = e.data.data.choices[0].message;
+                            if (!llmResponseData || !llmResponseData.choices || llmResponseData.choices.length === 0) {
                                 console.error('LLM response is missing a message content.');
                                 alert('Received an empty or invalid response from the LLM.');
                                 return;
                             }
 
-                            // Remove Meta's stop_reason from the message
                             console.log('Initial llmResponseData:', llmResponseData)
-                            // delete llmResponseData.stop_reason;
-                            // console.log('Final assistantMessagePayload:', assistantMessagePayload)
 
                             const newCmjMessage = {
                                 role: llmResponseData.role,
                                 name: machineConfig.name,
-                                content: llmResponseData.content.text
+                                content: llmResponseData.content.trim()
                             };
 
                             // cmjMessages (from the outer scope of the Alt+Shift listener) is updated
