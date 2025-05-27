@@ -16,29 +16,39 @@ title: Thingking Machine
     border-radius: 5px;
     background-color: #f9f9f9;
   }
-  .llm-param-form h2 {
-    margin-top: 0;
+  /* Removed .llm-param-form h2 styling as the h2 is removed */
+
+  .llm-param-form .form-row { /* New class for each label-input pair row */
+    display: flex;
+    align-items: center; /* Vertically align items in the middle */
+    margin-bottom: 10px; /* Space between rows */
   }
+
   .llm-param-form label {
-    display: block;
-    margin-top: 10px;
+    /* display: block; */ /* No longer needed */
+    /* margin-top: 10px; */ /* No longer needed */
     font-weight: bold;
+    margin-right: 10px; /* Space between label and input */
+    min-width: 150px; /* Adjust as needed for your longest label */
+    text-align: right; /* Optional: align label text to the right */
   }
+
   .llm-param-form input[type="text"],
   .llm-param-form input[type="number"],
   .llm-param-form select {
-    width: 100%;
+    width: 100%; /* Input will take remaining space within its flex container */
     max-width: 300px;
     padding: 8px;
-    margin-top: 5px;
+    /* margin-top: 5px; */ /* No longer needed as alignment is handled by flex */
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
   }
+
   .styled-link-button {
     display: inline-block;
     padding: 10px 18px;
-    margin-top: 20px;
+    margin-top: 20px; /* This can be adjusted or moved to a wrapper div if needed */
     background-color: #007bff;
     color: white !important; /* Important to override default link styles */
     text-decoration: none;
@@ -46,7 +56,7 @@ title: Thingking Machine
     cursor: pointer;
     font-size: 1em;
     text-align: center;
-    border: none; /* If it were an input type=submit */
+    border: none;
   }
   .styled-link-button:hover {
     background-color: #0056b3;
@@ -55,25 +65,25 @@ title: Thingking Machine
 </style>
 
 <div class="llm-param-form">
-  <h2>Set LLM Parameters</h2>
+  <!-- Removed <h2>Set LLM Parameters</h2> -->
   <form id="llmParamsForm">
-    <div>
+    <div class="form-row"> <!-- Added form-row class -->
       <label for="model">Model:</label>
       <input type="text" id="model" name="model" value="gpt-4-turbo">
     </div>
-    <div>
+    <div class="form-row"> <!-- Added form-row class -->
       <label for="temperature">Temperature:</label>
       <input type="number" id="temperature" name="temperature" value="0.7" step="0.1" min="0" max="2">
     </div>
-    <div>
+    <div class="form-row"> <!-- Added form-row class -->
       <label for="max_tokens">Max Tokens:</label>
       <input type="number" id="max_tokens" name="max_tokens" value="2000" step="100">
     </div>
-    <div>
+    <div class="form-row"> <!-- Added form-row class -->
       <label for="system_prompt">System Prompt (optional):</label>
       <input type="text" id="system_prompt" name="system_prompt" value="You are a helpful assistant.">
     </div>
-    <div>
+    <div> <!-- This div can remain as is for the button, or you can add form-row and adjust alignment if needed -->
       <a href="#" id="navigateToMachineLink" class="styled-link-button">Thingk with these settings!</a>
     </div>
   </form>
