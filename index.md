@@ -27,7 +27,7 @@ title: Thingking Machine
     /* margin-top: 10px; */ /* No longer needed */
     font-weight: bold;
     margin-right: 10px; /* Space between label and input */
-    min-width: 250px; /* Adjust as needed for your longest label */
+    min-width: 240px; /* Adjust as needed for your longest label */
     text-align: right; /* Optional: align label text to the right */
   }
 
@@ -35,7 +35,7 @@ title: Thingking Machine
   .llm-param-form input[type="number"],
   .llm-param-form select {
     width: 100%; /* Input will take remaining space within its flex container */
-    max-width: 400px;
+    max-width: 420px;
     padding: 8px;
     /* margin-top: 5px; */ /* No longer needed as alignment is handled by flex */
     border: 1px solid #ddd;
