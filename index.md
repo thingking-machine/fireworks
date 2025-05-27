@@ -7,8 +7,8 @@ title: Thingking Machine
 <pre>
   A machine is a <b>thing</b>. Things can not <b>think</b>. ...but some of them can <b>thingk</b>!
 </pre>
-
-Go to the [Machine Page](/pages/machine) or change the settings below.<br>
+<br>
+Go to the [Machine Page](/fireworks/pages/machine) or change the settings below.<br><br>
 
 <style>
   .llm-param-form {
