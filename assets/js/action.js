@@ -158,6 +158,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 8. Event listener to switch to edit mode when dialogue content is clicked
     dialogueWrapper.addEventListener('click', () => {
         try {
+            // Just to make sure I've received the parameters
+            console.log('LLM Settings:', window.llmSettings)
             // Convert the current HTML to plain text.
             textarea.value = platoHtmlToPlatoText(dialogueWrapper.innerHTML);
             dialogueWrapper.style.display = 'none';
