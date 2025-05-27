@@ -23,11 +23,9 @@ title: Thingking Machine
   }
 
   .llm-param-form label {
-    /* display: block; */ /* No longer needed */
-    /* margin-top: 10px; */ /* No longer needed */
     font-weight: bold;
     margin-right: 10px; /* Space between label and input */
-    min-width: 220px; /* Adjust as needed for your longest label */
+    min-width: 250px; 
     text-align: right; /* Optional: align label text to the right */
   }
 
@@ -35,9 +33,8 @@ title: Thingking Machine
   .llm-param-form input[type="number"],
   .llm-param-form select {
     width: 100%; /* Input will take remaining space within its flex container */
-    max-width: 440px;
+    max-width: 400px;
     padding: 8px;
-    /* margin-top: 5px; */ /* No longer needed as alignment is handled by flex */
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
@@ -48,7 +45,7 @@ title: Thingking Machine
     padding: 10px 18px;
     margin-top: 20px; /* This can be adjusted or moved to a wrapper div if needed */
     background-color: #007bff;
-    color: white !important; /* Important to override default link styles */
+    color: white !important; 
     text-decoration: none;
     border-radius: 4px;
     cursor: pointer;
@@ -64,7 +61,7 @@ title: Thingking Machine
 
 <div class="llm-param-form">
   <form id="llmParamsForm">
-    <div class="form-row"> <!-- Added form-row class -->
+    <div class="form-row"> 
       <label for="model">model:</label>
       <input type="text" id="model" name="model" value="accounts/fireworks/models/llama-v3p1-8b-instruct">
     </div>
