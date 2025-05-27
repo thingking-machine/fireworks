@@ -27,7 +27,7 @@ title: Thingking Machine
     /* margin-top: 10px; */ /* No longer needed */
     font-weight: bold;
     margin-right: 10px; /* Space between label and input */
-    min-width: 240px; /* Adjust as needed for your longest label */
+    min-width: 220px; /* Adjust as needed for your longest label */
     text-align: right; /* Optional: align label text to the right */
   }
 
@@ -35,7 +35,7 @@ title: Thingking Machine
   .llm-param-form input[type="number"],
   .llm-param-form select {
     width: 100%; /* Input will take remaining space within its flex container */
-    max-width: 420px;
+    max-width: 440px;
     padding: 8px;
     /* margin-top: 5px; */ /* No longer needed as alignment is handled by flex */
     border: 1px solid #ddd;
@@ -89,7 +89,7 @@ title: Thingking Machine
       <input type="number" id="top_k" name="top_k" value="50" step="1" min="1" max="1000">
     </div>
     <div> <!-- This div can remain as is for the button, or you can add form-row and adjust alignment if needed -->
-      <a href="#" id="navigateToMachineLink" class="styled-link-button">Thingk with these settings!</a>
+      <a href="#" id="navigateToMachineLink" class="styled-link-button">Thingk with these settings, Machine.</a>
     </div>
   </form>
 </div>
