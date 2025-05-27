@@ -60,7 +60,7 @@ self.onmessage = async function(event) {
         const defaultApiParameters = {
             model: machineConfig.llm,
             max_tokens: 4096,
-            prompt_truncate_len: 1500,
+            prompt_truncate_len: 10000,
             temperature: 1,
             top_p: 1,
             top_k: 50,
