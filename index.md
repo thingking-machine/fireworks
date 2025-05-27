@@ -16,8 +16,6 @@ title: Thingking Machine
     border-radius: 5px;
     background-color: #f9f9f9;
   }
-  /* Removed .llm-param-form h2 styling as the h2 is removed */
-
   .llm-param-form .form-row { /* New class for each label-input pair row */
     display: flex;
     align-items: center; /* Vertically align items in the middle */
@@ -29,7 +27,7 @@ title: Thingking Machine
     /* margin-top: 10px; */ /* No longer needed */
     font-weight: bold;
     margin-right: 10px; /* Space between label and input */
-    min-width: 150px; /* Adjust as needed for your longest label */
+    min-width: 250px; /* Adjust as needed for your longest label */
     text-align: right; /* Optional: align label text to the right */
   }
 
@@ -37,7 +35,7 @@ title: Thingking Machine
   .llm-param-form input[type="number"],
   .llm-param-form select {
     width: 100%; /* Input will take remaining space within its flex container */
-    max-width: 300px;
+    max-width: 400px;
     padding: 8px;
     /* margin-top: 5px; */ /* No longer needed as alignment is handled by flex */
     border: 1px solid #ddd;
@@ -65,11 +63,10 @@ title: Thingking Machine
 </style>
 
 <div class="llm-param-form">
-  <!-- Removed <h2>Set LLM Parameters</h2> -->
   <form id="llmParamsForm">
     <div class="form-row"> <!-- Added form-row class -->
       <label for="model">Model:</label>
-      <input type="text" id="model" name="model" value="gpt-4-turbo">
+      <input type="text" id="model" name="model" value="accounts/fireworks/models/llama-v3p1-8b-instruct">
     </div>
     <div class="form-row"> <!-- Added form-row class -->
       <label for="temperature">Temperature:</label>
@@ -78,10 +75,6 @@ title: Thingking Machine
     <div class="form-row"> <!-- Added form-row class -->
       <label for="max_tokens">Max Tokens:</label>
       <input type="number" id="max_tokens" name="max_tokens" value="2000" step="100">
-    </div>
-    <div class="form-row"> <!-- Added form-row class -->
-      <label for="system_prompt">System Prompt (optional):</label>
-      <input type="text" id="system_prompt" name="system_prompt" value="You are a helpful assistant.">
     </div>
     <div> <!-- This div can remain as is for the button, or you can add form-row and adjust alignment if needed -->
       <a href="#" id="navigateToMachineLink" class="styled-link-button">Thingk with these settings!</a>
