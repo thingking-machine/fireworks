@@ -9,4 +9,4 @@ title: Thingking Machine
 </pre>
 
 
-[Thingking-Machine using fireworks.ai](./pages/machine)
+[Thingking-Machine (fireworks)](./pages/machine)
