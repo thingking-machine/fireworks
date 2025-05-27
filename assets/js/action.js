@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     // Make the parameters globally available for other scripts
     window.llmSettings = llmSettings;
+    console.log('LLM Settings:', window.llmSettings)
 
     // Check whether the page has the container.
     const contentContainer = document.querySelector('.container-md.markdown-body');
