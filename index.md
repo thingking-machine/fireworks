@@ -5,7 +5,7 @@ title: Thingking Machine
 # Thingking Machine
 
 <br>
-Go to the [Machine Page](/fireworks/machine) or change the settings below.
+Go diretly to the [Machine Page](/fireworks/machine) or change the settings.
 <br><br>
 <div class="llm-param-form">
   <form id="llmParamsForm">
@@ -38,29 +38,4 @@ Go to the [Machine Page](/fireworks/machine) or change the settings below.
     </div>
   </form>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const navigateLink = document.getElementById('navigateToMachineLink');
-  if (navigateLink) {
-    navigateLink.addEventListener('click', function(event) {
-        event.preventDefault();
-        const form = document.getElementById('llmParamsForm');
-        const params = {};
-        new FormData(form).forEach((value, key) => {
-        if (value) {
-            params[key] = value;
-        }
-      });
-
-      const queryParams = new URLSearchParams(params);
-
-      // Construct the target URL using Jekyll's relative_url filter for robustness
-      const targetBaseUrl = "{{ 'machine' | relative_url }}";
-      const targetUrl = targetBaseUrl + '?' + queryParams.toString();
-      
-      window.location.href = targetUrl;
-    });
-  }
-});
-</script>
+{% include parameter-form.html %}
