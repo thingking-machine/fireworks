@@ -5,7 +5,7 @@ title: Thingking Machine
 # Thingking Machine
 
 <br>
-Go diretly to the [Machine Page](/fireworks/machine) or change the settings.
+Go diretly to the [Dialogue Page](/fireworks/machine) or change the settings.
 <br><br>
 
 {% include parameter-form.html %}
