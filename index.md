@@ -8,7 +8,7 @@ title: Thingking Machine
   A machine is a <b>thing</b>. Things can not <b>think</b>. ...but some of them can <b>thingk</b>!
 </pre>
 <br>
-Go to the [Machine Page](/fireworks/pages/machine) or change the settings below.<br><br>
+Go to the [Machine Page](/fireworks/machine) or change the settings below.<br><br>
 
 <style>
   .llm-param-form {
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const queryParams = new URLSearchParams(params);
 
       // Construct the target URL using Jekyll's relative_url filter for robustness
-      const targetBaseUrl = "{{ '/pages/machine' | relative_url }}";
+      const targetBaseUrl = "{{ 'machine' | relative_url }}";
       const targetUrl = targetBaseUrl + '?' + queryParams.toString();
       
       window.location.href = targetUrl;
