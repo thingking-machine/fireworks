@@ -45,6 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Create a wrapper for the dialogue content (will be populated by updateDisplayState)
     const dialogueWrapper = document.createElement('div');
     dialogueWrapper.id = 'dialogue-wrapper';
+    dialogueWrapper.style.paddingBottom = '20px';
+
 
     // 2. Create the textarea for editing
     const textarea = document.createElement('textarea');
@@ -111,6 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
             dialogueWrapper.style.display = 'block';
             textarea.style.display = 'none';
             filePickerContainer.style.display = 'none';
+            // Scroll to the bottom of the dialogue content after it's updated and shown
+            dialogueWrapper.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
         } else {
             // No valid content, show file picker
             dialogueWrapper.style.display = 'none';
@@ -256,6 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const userQueryParameters = {
                     config: window.machineConfig,
+                    settings: window.llmSettings,
                     messages: cmjMessages
                 };
 
