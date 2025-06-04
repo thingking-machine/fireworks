@@ -159,7 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-
     // 8. Event listener to switch to edit mode when dialogue content is clicked
     dialogueWrapper.addEventListener('click', () => {
         try {
@@ -176,7 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Could not switch to edit mode due to a content error.");
         }
     });
-
     // 9. Event listener for saving (Ctrl+Enter) in the textarea
     textarea.addEventListener('keydown', (event) => {
         if (event.ctrlKey && !event.shiftKey && event.key === 'Enter') { // Changed from Shift to Enter as per original request context
@@ -186,12 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
             updateDisplayState(); // Update display, which will show dialogue or button
         }
     });
-
-    // 10. Event listener for auto-saving to localStorage on input
-    textarea.addEventListener('input', () => {
-        localStorage.setItem('multilogue', textarea.value);
-    });
-
     // 11. Event listener for saving to file (Ctrl+Shift+Enter) - Always "Save As"
     document.addEventListener('keydown', async (event) => {
         if (event.ctrlKey && event.shiftKey && event.key === 'Enter') {
@@ -234,7 +226,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-
     // 12. Event listener for LLM communications (Alt+Shift)
     document.addEventListener('keydown', function(event) {
         if (event.altKey && event.shiftKey) {
@@ -328,6 +319,49 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (e) {
                 console.error('Alt+Shift: Failed to process dialogue or communicate with the worker:', e);
                 alert('Error preparing data for LLM: ' + e.message);
+            }
+        }
+    });
+    // 13. Listen for storage changes to multilogue (e.g., from extension)
+    window.addEventListener('storage', function(event) {
+        if (event.key === 'multilogue') {
+            // console.log('Page Script: localStorage.platoText changed, calling updateDisplayState.');
+            // Ensure updateDisplayState is accessible here or call the relevant parts directly
+            if (typeof updateDisplayState === 'function') {
+                updateDisplayState();
+            } else {
+                console.warn('Page Script: updateDisplayState function not found globally for storage event.');
+                // Fallback or direct DOM manipulation if needed, though updateDisplayState is preferred
+                const currentPlatoText = localStorage.getItem('multilogue');
+                if (currentPlatoText && currentPlatoText.trim() !== '') {
+                    try {
+                        dialogueWrapper.innerHTML = platoTextToPlatoHtml(currentPlatoText); // Assumes platoTextToPlatoHtml is global
+                        dialogueWrapper.style.display = 'block';
+                        textarea.style.display = 'none';
+                        filePickerContainer.style.display = 'none';
+                        dialogueWrapper.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                    } catch (e) {
+                        console.error("Page Script (storage listener): Error rendering Plato text to HTML:", e);
+                        dialogueWrapper.innerHTML = "<p class='dialogue-error'>Error loading content.</p>";
+                    }
+                } else {
+                    dialogueWrapper.style.display = 'none';
+                    textarea.style.display = 'none';
+                    filePickerContainer.style.display = 'flex';
+                    dialogueWrapper.innerHTML = '';
+                    textarea.value = '';
+                }
+            }
+        }
+    });
+    // 14. Update display when tab becomes visible again
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+            // console.log('Page is now visible, ensuring display is up to date.');
+            if (typeof updateDisplayState === 'function') {
+                updateDisplayState();
+            } else {
+                console.warn('Page Script (visibilitychange): updateDisplayState function not found.');
             }
         }
     });
