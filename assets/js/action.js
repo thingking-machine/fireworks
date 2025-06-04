@@ -125,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             textarea.value = ''; // Clear textarea
         }
     }
+
     // Initial display update
     updateDisplayState();
 
