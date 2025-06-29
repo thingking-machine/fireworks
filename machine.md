@@ -24,7 +24,7 @@ title: Thingking
 
 <div id="loading-overlay" class="popup-overlay" style="display: none;">
     <div class="popup">
-        <h4>{{ site.machine.name }} is thingking...</h4>
+        <h5>{{ site.machine.name }} is thingking...</h5>
     </div>
 </div>
 
